@@ -1,0 +1,78 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+margin: 0;
+padding:0;
+}
+
+.nav-bot {
+height:100px;
+vertical-align: center;
+text-align:center;
+padding: 5px;
+}
+
+#header{
+padding-left: 10%;
+padding-top:10px;
+padding-bottom:10px;
+height: 110px;
+min-height: 110px;
+}
+
+#body-container{
+padding-top:120px;
+padding-bottom:10%;
+}
+
+container{
+width:90%;
+padding: 0px;}
+
+.btn-lg{
+height: 30px;
+margin: 0px;}
+
+.km-field{
+ width: 10px;
+  display: inline;
+  border: 1px solid #999;
+  height: 30px;
+}
+
+#map {
+        width: 100%;
+        height: 440px;
+ }
+
+.cursive {
+font-family: 'Knewave', cursive;
+
+}
+
+#title {
+color: #cc33ff;
+font-size: 60px;
+padding: 0px;
+margin: 0px;
+}
+
+h3 {
+font-size: 15px;
+padding: 0px;
+margin: 0px;
+}
+
+.nav-text{
+color:#FFFFFF;
+font-size: 30px;
+display:inline;}
+
+.marg{
+margin-left: 15px;
+margin-right: 15px;}

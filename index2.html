@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VanRoulette</title>
+
+ <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Knewave' rel='stylesheet' type='text/css'>
+
+
+
+
+</head>
+
+<body>
+
+<script>
+    function getLocation() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+       alert("Geolocation is not supported by this browser.");
+    }
+}
+function showPosition(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude);
+
+    $("#lat").val(latitude);
+    $("#lon").val(longitude);
+    alert("Latitude: " + position.coords.latitude +
+    " Longitude: " + position.coords.longitude);}
+    window.onload = setTimeout(getLocation,500);
+
+</script>
+
+<div class = "wrapper">
+
+    <div class="container">
+        <div class="header navbar-fixed-top navbar navbar-default" id="header">
+            <h1 class="cursive" id="title">VanRoulette</h1>
+            <h3>Feeling spontaneous? Let chance pick your destination.</h3>
+        </div>
+
+
+
+        <form class="navbar-form navbar-right" action="/getact" method="post"> <div class="form-group" id="nav-form">
+        <nav class = "navbar-fixed-bottom navbar nav-bot navbar-inverse">
+            <input type="text" class="form-control marg" placeholder="0" name="lat" id="lat">
+            <input type="text" class="form-control marg" placeholder="0" name="lon" id="lon">
+            <p class="nav-text marg">I want to</p>
+      <select class="form-control btn-lg marg" name="acttype">
+  <option value="food">Eat something</option>
+  <option value="bus">Get on a bus</option>
+  <option value="spectate">Watch something</option>
+  <option value="outdoors">Outdoors something</option>
+  <option value="surprise">Surprise me</option>
+</select>
+            <p class="nav-text"> within</p>
+      <input type="number" class="form-control km-field marg" placeholder="0" name="distance" min="0"> <p class="nav-text"> km</p>
+      <input type="submit" class="btn btn-default navbar-btn marg" value="Submit">Go!</input>
+</nav>
+            </div>
+            </form>
+
+
+
+<div id="body-container">
+
+        <div id ="map">
+
+        <script>
+
+
+function initMap() {
+  var centreLat = {{latitude}};
+  var centreLon = {{longitude}};
+  var latit = {{latitude}};
+  var longi = {{longitude}};
+  //var myLatLng = {lat: latit, lng: longi};
+  var myLatLng = {lat: centreLat, lng: centreLon};
+  var listOf = {{listOf}}
+
+  // Create a map object and specify the DOM element for display.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    scrollwheel: false,
+    zoom: 15
+  });
+
+  for (var i = 0; i <listOf.length; i++){
+    var latitt = listOf[i][0];
+    var longit = listOf[i][1];
+    var myLatlng = new google.maps.LatLng(latitt, longit);
+    var marker = new google.maps.Marker({
+              position: myLatlng,
+
+              map:map,
+          });
+     marker.setMap(map)
+  }
+
+
+}
+
+
+window.onload = setTimeout(initMap,1000);
+
+</script>
+
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsHbib3aGBwsO6ySVqCJcZUaAQjtNlqsc&callback=initMap">
+    </script>
+
+        <footer class="footer">
+            <p>&copy; Company 2015</p>
+        </footer>
+
+    </div>
+
+        </div>
+</div>
+    </div>
+
+</body>
+
+</html>
